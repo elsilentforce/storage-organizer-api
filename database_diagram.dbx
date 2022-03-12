@@ -1,0 +1,31 @@
+// Use this Diagram at dbdiagram.io
+
+Table User as U {
+  id int [pk]
+  first_name varchar [not null]
+  last_name varchar [not null]
+  email varchar [not null]
+}
+
+Table containers {
+  id int [pk]
+  description varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table items {
+  id int [pk]
+  description varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table container_items {
+  id int [pk]
+  container_id int [ref: > containers.id]
+  item_id int [ref: > items.id]
+  quantity int [not null]
+  created_at timestamp
+  updated_at timestamp
+}
