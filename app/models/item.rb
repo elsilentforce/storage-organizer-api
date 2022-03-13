@@ -1,3 +1,3 @@
 class Item < ApplicationRecord
-  has_many :container_items
+  has_many :contents
 end
