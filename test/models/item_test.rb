@@ -1,7 +1,11 @@
 require "test_helper"
 
 class ItemTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  describe "with valid params" do
+    let(:item) { Item.new(description: "Description") }
+
+    it "creates an item" do
+      expect item.valid?
+    end
+  end
 end
