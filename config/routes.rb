@@ -1,18 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
+  
   # Defines the root path route ("/")
   # root "articles#index"
-  namespace :api do
+  namespace :api, defaults: { format: :json } do
+    
     namespace :v1 do
-      scope :items do
-        get '/:id', to: 'items#show', as: 'item_show'
-      end
+      
+      devise_for :users, controllers: { sessions: :sessions },
+                         path_names: { sign_in: 'login' }
 
-      scope :containers do
-        get '/:id', to: 'containers#show', as: 'container_show'
-        get '/:id/items', to: 'containers#items', as: 'container_items'
+      resources :containers, only: :show do
+        get '/items', to: 'containers#items'
       end
 
     end
